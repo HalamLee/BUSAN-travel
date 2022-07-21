@@ -1,9 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import axios from 'axios';
 
 function App() {
   const [position, setPosition] = useState();
+  useEffect(() => {
+    {
+      position &&
+        axios
+          .get(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${position.lat}&lon=${position.lng}&appid=3920187c07ee1d1397613db28a2ecc29`
+          )
+          .then((res) => {
+            console.log(res.data.name, res.data.weather[0].main);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+  }, [position]);
+
   return (
     <>
       <GlobalStyle />
@@ -35,10 +52,4 @@ body {
   justify-content: center;
   align-items: center
 }
-`;
-
-const MapContainer = styled.div`
-  width: 500px;
-  height: 500px;
-  background-color: red;
 `;
