@@ -111,7 +111,7 @@ function Busan() {
         }
         style={{
           // 지도의 크기
-          width: '500px',
+          width: '350px',
           height: '500px',
         }}
         level={3} // 지도의 확대 레벨
@@ -193,8 +193,9 @@ const ButtonWrapper = styled.div`
 `;
 
 const Button = styled.div`
-  width: 100px;
+  width: 80px;
   height: 50px;
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
