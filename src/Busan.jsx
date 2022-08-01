@@ -19,10 +19,7 @@ function Busan() {
       title: '브라운도트',
       latlng: { lat: 35.1686008, lng: 129.1141368 },
     },
-    {
-      title: '부산종합버스터미널',
-      latlng: { lat: 35.285, lng: 129.0954 },
-    },
+
     {
       title: '수변최고돼지국밥 본점',
       latlng: { lat: 35.1569, lng: 129.1343 },
@@ -52,6 +49,10 @@ function Busan() {
   // 08/10
   const lastPositions = [
     {
+      title: '부산종합버스터미널',
+      latlng: { lat: 35.285, lng: 129.0954 },
+    },
+    {
       title: '신발원',
       latlng: { lat: 35.1149, lng: 129.0387 },
     },
@@ -73,14 +74,14 @@ function Busan() {
         <Button
           onClick={() => {
             setDate([...firstPositions, ...secondPositions, ...lastPositions]);
-            setFocus({ lat: 35.285, lng: 129.0954 });
+            setFocus({ lat: 35.1686008, lng: 129.1141368 });
           }}>
           전체 보기
         </Button>
         <Button
           onClick={() => {
             setDate(firstPositions);
-            setFocus({ lat: 35.285, lng: 129.0954 });
+            setFocus({ lat: 35.1686008, lng: 129.1141368 });
           }}>
           08/08(월)
         </Button>
@@ -107,7 +108,7 @@ function Busan() {
                 lat: focus.lat,
                 lng: focus.lng,
               }
-            : { lat: 35.285, lng: 129.0954 }
+            : { lat: 35.1686008, lng: 129.1141368 }
         }
         style={{
           // 지도의 크기
