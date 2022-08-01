@@ -5,6 +5,7 @@ import axios from 'axios';
 
 function App() {
   const [position, setPosition] = useState();
+
   useEffect(() => {
     {
       position &&
@@ -24,8 +25,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
+
       <Map
-        center={{ lat: 33.450701, lng: 126.570667 }}
+        center={{ lat: 37.631074, lng: 127.055035 }}
         style={{ width: '500px', height: '500px', borderRadius: '30px' }}
         level={3}
         onClick={(_t, mouseEvent) =>
