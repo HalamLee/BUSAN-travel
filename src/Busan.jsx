@@ -7,73 +7,28 @@ import {
   CustomOverlayMap,
 } from 'react-kakao-maps-sdk';
 import axios from 'axios';
+import {
+  all,
+  firstPositions,
+  secondPositions,
+  lastPositions,
+} from './data/data';
 
 function Busan() {
-  const [position, setPosition] = useState();
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(all);
   const [focus, setFocus] = useState();
 
-  // 08/08
-  const firstPositions = [
-    {
-      title: '브라운도트',
-      latlng: { lat: 35.1686008, lng: 129.1141368 },
-    },
-
-    {
-      title: '수변최고돼지국밥 본점',
-      latlng: { lat: 35.1569, lng: 129.1343 },
-    },
-    {
-      title: '광안리 요이쿠마',
-      latlng: { lat: 35.1581, lng: 129.1266 },
-    },
-    {
-      title: '류센소 광안직영점',
-      latlng: { lat: 35.1498, lng: 129.1147 },
-    },
-  ];
-
-  // 08/09
-  const secondPositions = [
-    {
-      title: '코모도호텔',
-      latlng: { lat: 35.1092, lng: 129.0355 },
-    },
-    {
-      title: '뚱보집',
-      latlng: { lat: 35.1007, lng: 129.0361 },
-    },
-  ];
-
-  // 08/10
-  const lastPositions = [
-    {
-      title: '부산종합버스터미널',
-      latlng: { lat: 35.285, lng: 129.0954 },
-    },
-    {
-      title: '신발원',
-      latlng: { lat: 35.1149, lng: 129.0387 },
-    },
-  ];
-
-  const clickHandler = () => {
-    setDate();
+  const clickHandler = (place) => {
+    setFocus(place.latlng);
   };
-
-  useEffect(() => {
-    console.log('date :>> ', date);
-  }, [date]);
 
   return (
     <>
       <GlobalStyle />
-      {/* <MarkerWithCustomOverlayStyle /> */}
       <ButtonWrapper>
         <Button
           onClick={() => {
-            setDate([...firstPositions, ...secondPositions, ...lastPositions]);
+            setDate(all);
             setFocus({ lat: 35.1686008, lng: 129.1141368 });
           }}>
           전체 보기
@@ -113,14 +68,17 @@ function Busan() {
         style={{
           // 지도의 크기
           width: '350px',
-          height: '500px',
+          height: '400px',
         }}
         level={3} // 지도의 확대 레벨
       >
         {date
           ? date.map((position, index) => (
               <>
-                <CustomOverlayMap position={position.latlng} yAnchor={1}>
+                <CustomOverlayMap
+                  position={position.latlng}
+                  yAnchor={1}
+                  key={index}>
                   <div className="customoverlay">
                     <Link
                       href={`https://map.kakao.com/link/to/${position.title},${position.latlng.lat},${position.latlng.lng}`}
@@ -134,7 +92,10 @@ function Busan() {
             ))
           : firstPositions.map((position, index) => (
               <>
-                <CustomOverlayMap position={position.latlng} yAnchor={1}>
+                <CustomOverlayMap
+                  position={position.latlng}
+                  yAnchor={1}
+                  key={index}>
                   <div className="customoverlay">
                     <Link
                       href={`https://map.kakao.com/link/to/${position.title},${position.latlng.lat},${position.latlng.lng}`}
@@ -147,6 +108,15 @@ function Busan() {
               </>
             ))}
       </Map>
+      {date && (
+        <ListWrapper>
+          {date.map((place, index) => (
+            <List key={index} onClick={() => clickHandler(place)}>
+              {place.title}
+            </List>
+          ))}
+        </ListWrapper>
+      )}
     </>
   );
 }
@@ -161,7 +131,8 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  font-weight: 600;
 }
 `;
 
@@ -180,7 +151,7 @@ const Button = styled.div`
   background-color: aliceblue;
   cursor: pointer;
   &:hover {
-    background-color: red;
+    background-color: #9de0c1;
   }
 `;
 
@@ -193,11 +164,27 @@ const Title = styled.div`
   width: fit-content;
   height: fit-content;
   padding: 8px;
-  background-color: rgba(155, 155, 155, 0.4);
+  background-color: rgba(142, 231, 239, 0.4);
   border-radius: 10px;
-  font-weight: 600;
   &:hover {
-    background-color: rgba(155, 155, 155, 1);
+    background-color: #8edcef;
     color: white;
+  }
+`;
+
+const ListWrapper = styled.div`
+  margin-top: 20px;
+  width: 350px;
+  height: 150px;
+  overflow-y: scroll;
+`;
+
+const List = styled.div`
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  box-sizing: border-box;
+  &:hover {
+    background-color: #9de0c1;
   }
 `;
