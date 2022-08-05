@@ -120,52 +120,28 @@ function Busan() {
         {date
           ? date.map((position, index) => (
               <>
-                <MapMarker
-                  key={`${position.title}-${position.latlng}`}
-                  position={position.latlng} // 마커를 표시할 위치
-                  image={{
-                    src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 마커이미지의 주소입니다
-                    size: {
-                      width: 24,
-                      height: 35,
-                    }, // 마커이미지의 크기입니다
-                  }}
-                  title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                />
                 <CustomOverlayMap position={position.latlng} yAnchor={1}>
                   <div className="customoverlay">
-                    <a
+                    <Link
                       href={`https://map.kakao.com/link/to/${position.title},${position.latlng.lat},${position.latlng.lng}`}
                       target="_blank"
                       rel="noreferrer">
-                      <span className="title">{position.title}</span>
-                    </a>
+                      <Title>{position.title}</Title>
+                    </Link>
                   </div>
                 </CustomOverlayMap>
               </>
             ))
           : firstPositions.map((position, index) => (
               <>
-                <MapMarker
-                  key={`${position.title}-${position.latlng}`}
-                  position={position.latlng} // 마커를 표시할 위치
-                  image={{
-                    src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 마커이미지의 주소입니다
-                    size: {
-                      width: 24,
-                      height: 35,
-                    }, // 마커이미지의 크기입니다
-                  }}
-                  title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                />
                 <CustomOverlayMap position={position.latlng} yAnchor={1}>
                   <div className="customoverlay">
-                    <a
+                    <Link
                       href={`https://map.kakao.com/link/to/${position.title},${position.latlng.lat},${position.latlng.lng}`}
                       target="_blank"
                       rel="noreferrer">
-                      <span className="title">{position.title}</span>
-                    </a>
+                      <Title>{position.title}</Title>
+                    </Link>
                   </div>
                 </CustomOverlayMap>
               </>
@@ -205,5 +181,23 @@ const Button = styled.div`
   cursor: pointer;
   &:hover {
     background-color: red;
+  }
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
+
+const Title = styled.div`
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
+  background-color: rgba(155, 155, 155, 0.4);
+  border-radius: 10px;
+  font-weight: 600;
+  &:hover {
+    background-color: rgba(155, 155, 155, 1);
+    color: white;
   }
 `;
