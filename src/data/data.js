@@ -17,6 +17,10 @@ export const firstPositions = [
     title: '류센소 광안직영점',
     latlng: { lat: 35.1498, lng: 129.1147 },
   },
+  {
+    title: '광안 무쇠김치삼겹',
+    latlng: { lat: 35.155, lng: 129.0607 },
+  },
 ];
 
 // 08/09
