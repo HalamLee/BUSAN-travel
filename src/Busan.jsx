@@ -186,5 +186,6 @@ const List = styled.div`
   box-sizing: border-box;
   &:hover {
     background-color: #9de0c1;
+    cursor: pointer;
   }
 `;
