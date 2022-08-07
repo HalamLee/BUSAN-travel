@@ -1,12 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import {
-  Map,
-  MapMarker,
-  // MarkerWithCustomOverlayStyle,
-  CustomOverlayMap,
-} from 'react-kakao-maps-sdk';
-import axios from 'axios';
+import { Map, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import {
   all,
   firstPositions,
